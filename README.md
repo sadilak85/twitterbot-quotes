@@ -1,1 +1,1 @@
-# twitterbot-quotes
+twitterbot tweeting famous quotes periodically
