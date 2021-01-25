@@ -21,6 +21,10 @@ def main():
 	
 	gather_info.displayinfo(user)
 	
+	temp = api.trends_place(1)
+	trends_list = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
+	print(trends_list)
+
 	# What the bot will tweet
 	filename = open('quotes.js','r') 
 	tweetlist = filename.read() 
@@ -35,6 +39,8 @@ def main():
 	url = url_list[i]
 
 	i = random.randint(0,len(tweetlist)-1)
+	j = random.randint(0,len(trends_list)-1)
+
 	try: 
 		#api.update_status(tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
 		filename = 'temp.jpg'
@@ -43,7 +49,7 @@ def main():
 			with open(filename, 'wb') as image:
 				for chunk in request:
 					image.write(chunk)
-			api.update_with_media(filename, status=tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
+			api.update_with_media(filename, status=tweetlist[i]["text"]+' -'+tweetlist[i]["author"]+' '+trends_list[j])
 			os.remove(filename)
 		else:
 			print("Unable to download image")
@@ -108,6 +114,7 @@ def main():
 
 
 if __name__ == "__main__":
+	main()
 	# run the function main() every 30 minutes  
 	schedule.every(60).minutes.do(main)  
 
