@@ -1,11 +1,11 @@
 import tweepy
 import time
 import demjson
-#import gather_info
+import gather_info
 import random
-
 import requests
 import os
+import schedule  
 
 def main():
 	with open('API_keys.txt', 'r') as file :
@@ -19,7 +19,7 @@ def main():
 	api = tweepy.API(auth)
 	user = api.me()
 	
-	#gather_info.displayinfo(user)
+	gather_info.displayinfo(user)
 	
 	# What the bot will tweet
 	filename = open('quotes.js','r') 
@@ -33,8 +33,7 @@ def main():
 	
 	i = random.randint(0,len(url_list)-1)
 	url = url_list[i]
-	print(url)
-	
+
 	i = random.randint(0,len(tweetlist)-1)
 	try: 
 		#api.update_status(tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
@@ -109,6 +108,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+	# run the function main() every 30 minutes  
+	schedule.every(60).minutes.do(main)  
+
+	while True:  
+		schedule.run_pending()
+
+
 	
 	
