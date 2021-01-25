@@ -7,7 +7,6 @@ import random
 import requests
 import os
 
-
 def main():
 	with open('API_keys.txt', 'r') as file :
 		consumer_key = file.readline().strip()
