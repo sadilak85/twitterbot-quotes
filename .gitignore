@@ -1,4 +1,5 @@
 API_keys.txt
+run_twitbot.bat
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
