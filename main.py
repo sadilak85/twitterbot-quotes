@@ -1,7 +1,12 @@
 import tweepy
 import time
 import demjson
-import gather_info
+#import gather_info
+import random
+
+import requests
+import os
+
 
 def main():
 	with open('API_keys.txt', 'r') as file :
@@ -15,7 +20,7 @@ def main():
 	api = tweepy.API(auth)
 	user = api.me()
 	
-	gather_info.displayinfo(user)
+	#gather_info.displayinfo(user)
 	
 	# What the bot will tweet
 	filename = open('quotes.js','r') 
@@ -24,16 +29,31 @@ def main():
 
 	tweetlist = demjson.decode(tweetlist)
 
-	try:
-		for elt in tweetlist: 
-			api.update_status(elt["text"]+' -'+elt["author"])
-			time.sleep(3600) 
-
+	with open('pic_urls.txt', 'r') as file:
+		url_list = file.readlines()
+	
+	i = random.randint(0,len(url_list)-1)
+	url = url_list[i]
+	print(url)
+	
+	i = random.randint(0,len(tweetlist)-1)
+	try: 
+		#api.update_status(tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
+		filename = 'temp.jpg'
+		request = requests.get(url, stream=True)
+		if request.status_code == 200:
+			with open(filename, 'wb') as image:
+				for chunk in request:
+					image.write(chunk)
+			api.update_with_media(filename, status=tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
+			os.remove(filename)
+		else:
+			print("Unable to download image")
+	
 	except tweepy.error.TweepError:
 		pass
-		
-	search = "simulation"
-	numberOfTweets = 2
+
+
 
 	def limit_handle(cursor):
 		while True:
@@ -48,6 +68,8 @@ def main():
 	#    print(follower.name)
 	#    follower.follow()
 
+	search = "simulation"
+	numberOfTweets = 10
 
 	# Be a narcisist and love your own tweets. or retweet anything with a keyword!
 	for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
@@ -58,6 +80,34 @@ def main():
 			print(e.reason)
 		except StopIteration:
 			break
+			
+	search = "valentines quotes"
+	numberOfTweets = 10
+
+	# Be a narcisist and love your own tweets. or retweet anything with a keyword!
+	for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+		try:
+			tweet.favorite()
+			print('Retweeted the tweet')
+		except tweepy.TweepError as e:
+			print(e.reason)
+		except StopIteration:
+			break
+
+			
+	search = "scientific quotes"
+	numberOfTweets = 10
+
+	# Be a narcisist and love your own tweets. or retweet anything with a keyword!
+	for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
+		try:
+			tweet.favorite()
+			print('Retweeted the tweet')
+		except tweepy.TweepError as e:
+			print(e.reason)
+		except StopIteration:
+			break
+
 
 if __name__ == "__main__":
     main()
