@@ -5,7 +5,8 @@ import gather_info
 import random
 import requests
 import os
-import schedule  
+import schedule 
+from googletrans import Translator 
 
 def main():
 	with open('API_keys.txt', 'r') as file :
@@ -21,9 +22,10 @@ def main():
 	
 	gather_info.displayinfo(user)
 	
-	temp = api.trends_place(1)
+	temp = api.trends_place(23424969)
 	trends_list = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
 	print(trends_list)
+
 
 	# What the bot will tweet
 	filename = open('quotes.js','r') 
@@ -40,7 +42,7 @@ def main():
 
 	i = random.randint(0,len(tweetlist)-1)
 	j = random.randint(0,len(trends_list)-1)
-
+	translator = Translator()
 	try: 
 		#api.update_status(tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
 		filename = 'temp.jpg'
@@ -49,7 +51,18 @@ def main():
 			with open(filename, 'wb') as image:
 				for chunk in request:
 					image.write(chunk)
-			api.update_with_media(filename, status=tweetlist[i]["text"]+' -'+tweetlist[i]["author"]+' '+trends_list[j])
+			
+
+			try:
+				translated_text = translator.translate(str(tweetlist[i]["text"]), src='en', dest='tr')
+				print(translated_text.origin)
+				print(translated_text.text)
+				tweettext = translated_text.text+' -'+str(tweetlist[i]["author"])+' '+str(trends_list[j])
+			except:
+				print(tweetlist[i]["text"])
+				tweettext = str(tweetlist[i]["text"])+' -'+str(tweetlist[i]["author"])+' '+str(trends_list[j])
+				
+			api.update_with_media(filename, status=tweettext)
 			os.remove(filename)
 		else:
 			print("Unable to download image")
