@@ -22,7 +22,7 @@ def main():
 	
 	gather_info.displayinfo(user)
 	
-	temp = api.trends_place(23424969)
+	temp = api.trends_place(2344116) #WOEID of Turkey: 23424969   Istanbul: 2344116 
 	trends_list = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
 	print(trends_list)
 
