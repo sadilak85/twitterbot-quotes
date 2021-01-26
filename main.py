@@ -118,8 +118,9 @@ if __name__ == "__main__":
 	# run the function main() every 30 minutes  
 	schedule.every(60).minutes.do(main)  
 
-	while True:  
+	while True:
 		schedule.run_pending()
+		time.sleep(1000)
 
 
 	
