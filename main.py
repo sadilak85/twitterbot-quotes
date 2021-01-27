@@ -60,7 +60,7 @@ def main():
 	src_lang = 'en'
 	dest_lang = random.choice(list(lang_woeid.keys()))
 	print(dest_lang)
-
+	
 	#trend topic
 	def trend_topic ():
 		woeid = random.choice(list(lang_woeid[dest_lang].values()))
@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
 	while True:
 		main()
-		time.sleep(900)
+		time.sleep(1800)
 		#schedule.run_pending()
 #
 #
