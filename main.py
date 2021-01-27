@@ -133,13 +133,12 @@ def main():
 			
 
 if __name__ == "__main__":
+	main()
 	# run the function main() every 30 minutes  
 	#schedule.every(30).minutes.do(main)  
 
-	while True:
+	#while True:
 		#schedule.run_pending()
-		main()
-		time.sleep(1800)
 #
 #
 #
