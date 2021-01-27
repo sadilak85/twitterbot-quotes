@@ -45,7 +45,7 @@ def main():
 	'tr': {'Turkey': '23424969', 'Istanbul': '2344116', 'Ankara': '2343732', 'Izmir': '2344117'},
 	'ja': {'Japan': '23424856', 'Tokyo': '1118370', 'Yokohama': '1118550', 'Osaka': '15015370'},
 	'nl': {'Netherlands': '23424909', 'Amsterdam': '727232', 'DenHaag': '726874', 'Rotterdam': '733075'},
-	'el': {'Greece': '23424833', 'Athens': '946738'},
+	'el': {'Greece': '23424833'},
 	'ko': {'Korea': '23424868', 'Seoul': '1132599', 'Busan': '1132447'},
 	'no': {'Norway': '23424910'},
 	'pl': {'Poland': '23424923'},
@@ -60,15 +60,23 @@ def main():
 	src_lang = 'en'
 	dest_lang = random.choice(list(lang_woeid.keys()))
 	print(dest_lang)
-	woeid = random.choice(list(lang_woeid[dest_lang].values()))
 
-	#trend topic 
-	temp = api.trends_place(woeid)
-	trends_list = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
+	#trend topic
+	def trend_topic ():
+		woeid = random.choice(list(lang_woeid[dest_lang].values()))
+		temp = api.trends_place(woeid)
+		result = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
+		return result
+
+	trends_list = trend_topic ()
+	while trends_list == []:
+		trends_list = trend_topic ()
+
 	print(trends_list)
-	
 	i = random.randint(0,len(tweetlist)-1)
-	j = random.randint(0,len(trends_list)-1)
+	#j = random.randint(0,len(trends_list)-1)
+	topTrend_text = str(trends_list[0])
+	print(topTrend_text)
 	translator = Translator()
 	try: 
 		#api.update_status(tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
@@ -82,10 +90,10 @@ def main():
 				translated_text = translator.translate(str(tweetlist[i]["text"]), src=src_lang, dest=dest_lang)
 				print(translated_text.origin)
 				print(translated_text.text)
-				tweettext = translated_text.text+' -'+str(tweetlist[i]["author"])+' '+str(trends_list[j])
+				tweettext = translated_text.text+' -'+str(tweetlist[i]["author"])+' '+topTrend_text
 			except:
 				print(tweetlist[i]["text"])
-				tweettext = str(tweetlist[i]["text"])+' -'+str(tweetlist[i]["author"])+' '+str(trends_list[j])
+				tweettext = str(tweetlist[i]["text"])+' -'+str(tweetlist[i]["author"])+' '+topTrend_text
 	
 			api.update_with_media(filename, status=tweettext)
 			os.remove(filename)
@@ -110,7 +118,7 @@ def main():
 	#    follower.follow()
 
 	#search = "simulation" 
-	search = trends_list[j][1:]
+	search = topTrend_text[1:]
 	numberOfTweets = 10
 
 	# Be a narcisist and love your own tweets. or retweet anything with a keyword!
