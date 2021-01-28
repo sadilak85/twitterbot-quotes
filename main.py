@@ -64,8 +64,11 @@ def main():
 	#trend topic
 	def trend_topic ():
 		woeid = random.choice(list(lang_woeid[dest_lang].values()))
-		temp = api.trends_place(woeid)
-		result = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
+		try:
+			temp = api.trends_place(woeid)
+			result = [x['name'] for x in temp[0]['trends'] if x['name'].startswith('#')]
+		except:
+			result = []
 		return result
 
 	trends_list = trend_topic ()
@@ -138,7 +141,7 @@ if __name__ == "__main__":
 
 	while True:
 		main()
-		time.sleep(1800)
+		time.sleep(2500)
 		#schedule.run_pending()
 #
 #
