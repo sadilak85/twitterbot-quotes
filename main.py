@@ -26,8 +26,15 @@ def main():
 	filename = open('quotes.js','r') 
 	tweetlist = filename.read() 
 	filename.close()
+	
+	filename = open('quotes2.json','r',encoding='utf-8') 
+	tweetlist2 = filename.read() 
+	filename.close()	
 
 	tweetlist = demjson.decode(tweetlist)
+	tweetlist2 = demjson.decode(tweetlist2)
+	
+	tweetlist = tweetlist+tweetlist2
 
 	with open('pic_urls.txt', 'r') as file:
 		url_list = file.readlines()
@@ -45,11 +52,7 @@ def main():
 	'tr': {'Turkey': '23424969', 'Istanbul': '2344116', 'Ankara': '2343732', 'Izmir': '2344117'},
 	'ja': {'Japan': '23424856', 'Tokyo': '1118370', 'Yokohama': '1118550', 'Osaka': '15015370'},
 	'nl': {'Netherlands': '23424909', 'Amsterdam': '727232', 'DenHaag': '726874', 'Rotterdam': '733075'},
-	'el': {'Greece': '23424833'},
 	'ko': {'Korea': '23424868', 'Seoul': '1132599', 'Busan': '1132447'},
-	'no': {'Norway': '23424910'},
-	'pl': {'Poland': '23424923'},
-	'pt': {'Portugal': '23424925'},
 	'ru': {'Russia': '23424936', 'Moscow': '2122265', 'SaintPetersburg': '2123260'},
 	'sv': {'Sweden': '23424954', 'Stockholm': '906057'},
 	'th': {'Thailand': '23424960'},
