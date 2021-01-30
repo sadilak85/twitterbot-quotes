@@ -44,19 +44,19 @@ def main():
 
 	lang_woeid = {'en': {'NewYork': '2459115', 'LosAngeles': '2442047', 'Toronto': '4118', 'Sydney': '1105779', 'London': '44418', 'Chicago': '2379574'},
 	'de': {'Germany': '23424829', 'Berlin': '638243', 'Munich': '676757', 'Hamburg': '656958'},
-	'fr': {'France': '23424819', 'Paris': '615702'},
-	'it': {'Italy': '23424853', 'Roma': '721943'},
+	#'fr': {'France': '23424819', 'Paris': '615702'},
+	#'it': {'Italy': '23424853', 'Roma': '721943'},
 	'es': {'Spain': '23424950', 'Barcelona': '753692', 'Madrid': '766273'},
-	'hi': {'India': '23424848', 'Mumbai': '2295411', 'Delhi': '2295019'},
-	'ar': {'SaudiArabia': '23424938', 'AbuDhabi': '1940330'},
+	#'hi': {'India': '23424848', 'Mumbai': '2295411', 'Delhi': '2295019'},
+	#'ar': {'SaudiArabia': '23424938', 'AbuDhabi': '1940330'},
 	'tr': {'Turkey': '23424969', 'Istanbul': '2344116', 'Ankara': '2343732', 'Izmir': '2344117'},
 	'ja': {'Japan': '23424856', 'Tokyo': '1118370', 'Yokohama': '1118550', 'Osaka': '15015370'},
-	'nl': {'Netherlands': '23424909', 'Amsterdam': '727232', 'DenHaag': '726874', 'Rotterdam': '733075'},
-	'ko': {'Korea': '23424868', 'Seoul': '1132599', 'Busan': '1132447'},
-	'ru': {'Russia': '23424936', 'Moscow': '2122265', 'SaintPetersburg': '2123260'},
-	'sv': {'Sweden': '23424954', 'Stockholm': '906057'},
-	'th': {'Thailand': '23424960'},
-	'vi': {'Vietnam': '23424984'}
+	#'nl': {'Netherlands': '23424909', 'Amsterdam': '727232', 'DenHaag': '726874', 'Rotterdam': '733075'},
+	#'ko': {'Korea': '23424868', 'Seoul': '1132599', 'Busan': '1132447'},
+	#'ru': {'Russia': '23424936', 'Moscow': '2122265', 'SaintPetersburg': '2123260'},
+	#'sv': {'Sweden': '23424954', 'Stockholm': '906057'},
+	#'th': {'Thailand': '23424960'},
+	#'vi': {'Vietnam': '23424984'}
 	}
 
 	
