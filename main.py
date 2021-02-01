@@ -50,7 +50,7 @@ def main():
 	#'hi': {'India': '23424848', 'Mumbai': '2295411', 'Delhi': '2295019'},
 	#'ar': {'SaudiArabia': '23424938', 'AbuDhabi': '1940330'},
 	'tr': {'Turkey': '23424969', 'Istanbul': '2344116', 'Ankara': '2343732', 'Izmir': '2344117'},
-	'ja': {'Japan': '23424856', 'Tokyo': '1118370', 'Yokohama': '1118550', 'Osaka': '15015370'},
+	#'ja': {'Japan': '23424856', 'Tokyo': '1118370', 'Yokohama': '1118550', 'Osaka': '15015370'},
 	#'nl': {'Netherlands': '23424909', 'Amsterdam': '727232', 'DenHaag': '726874', 'Rotterdam': '733075'},
 	#'ko': {'Korea': '23424868', 'Seoul': '1132599', 'Busan': '1132447'},
 	#'ru': {'Russia': '23424936', 'Moscow': '2122265', 'SaintPetersburg': '2123260'},
@@ -82,6 +82,7 @@ def main():
 	i = random.randint(0,len(tweetlist)-1)
 	#j = random.randint(0,len(trends_list)-1)
 	topTrend_text = str(trends_list[0])
+	
 	print(topTrend_text)
 	translator = Translator()
 	try: 
