@@ -145,7 +145,7 @@ if __name__ == "__main__":
 
 	while True:
 		main()
-		time.sleep(2500)
+		time.sleep(3600)
 		#schedule.run_pending()
 #
 #
