@@ -5,7 +5,7 @@ with open('htmlsource_.txt', mode='r') as infile:
   htmlstr = infile.read()
   result = 'str'
   while result!=[]:
-    result = re.search('img src="(.*)" width', htmlstr)
+    result = re.search('z_h_9d80b z_h_2f2f0" src="(.*)" alt', htmlstr)
     if result == None:
       break
     print(result.group(1))
@@ -17,7 +17,7 @@ with open('htmlsource_.txt', mode='r') as infile:
       break
 
 
-with open('out_urls.txt', mode='w') as outfile:
+with open('out_.txt', mode='w') as outfile:
   for i in outputstr:
     outfile.write(i)
 
