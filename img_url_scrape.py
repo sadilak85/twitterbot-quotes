@@ -13,9 +13,8 @@ with open('htmlsource_.txt', mode='r', encoding="utf-8") as infile:
     result = re.search("style='background-image: url(.*)'></div>", htmlstr)
     if result == None:
       break
-    print(result.group(1))
     tmp = result.group(1)
-    keystr = tmp+'\n'
+    keystr = tmp
     outputstr.append(keystr)
     htmlstr = htmlstr.split(tmp)[1]
     if htmlstr ==[]:
@@ -24,7 +23,9 @@ with open('htmlsource_.txt', mode='r', encoding="utf-8") as infile:
 
 with open('out_.txt', mode='w') as outfile:
   for i in outputstr:
-    outfile.write(i)
+    a = i[1:]
+    b = a[:-1]
+    outfile.write(b+'\n')
 
 
 quit()

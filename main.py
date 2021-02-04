@@ -63,6 +63,7 @@ def main():
 	src_lang = 'en'
 	dest_lang = random.choice(list(lang_woeid.keys()))
 	print(dest_lang)
+	dest_lang = 'tr'
 	
 	#trend topic
 	def trend_topic ():
