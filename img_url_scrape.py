@@ -4,9 +4,20 @@ import re
 import cssutils
 
 
+lines_seen = set() # holds lines already seen
+outfile = open('outfilename', "w")
+for line in open('pic_urls.txt', "r"):
+    if line not in lines_seen: # not a duplicate
+        outfile.write(line)
+        lines_seen.add(line)
+outfile.close()
 
-outputstr=[]
-with open('htmlsource_.txt', mode='r', encoding="utf-8") as infile:
+
+
+
+
+'''
+with open('pic_urls.txt', mode='r') as infile:
   htmlstr = infile.read()
   result = 'str'
   while result!=[]:
@@ -28,17 +39,13 @@ with open('out_.txt', mode='w') as outfile:
     outfile.write(b+'\n')
 
 
-quit()
-
 
 htmlContent = requests.get('https://www.pexels.com/search/girl')
 soup = BeautifulSoup(htmlContent.text, 'html.parser')
 print(soup.find_all("div", class_="image-tag__img"))
 quit()
 
-
 with open('filepath', mode='w') as outfile:
-
   div_style = soup.findAll('div', attrs={'class': 'image-tag__img'})
   print (div_style)
   #div_style = soup.find('div')['style']
@@ -46,3 +53,5 @@ with open('filepath', mode='w') as outfile:
   url = style['background-image']
   
   outfile.write(url)
+
+'''
