@@ -6,7 +6,7 @@ test_mode = False
 verbose = False
 delete_tweets = True
 delete_favs = False
-days_to_keep = 7
+days_to_keep = 2
  
 tweets_to_save = [
     573245340398170114, # keybase proof
