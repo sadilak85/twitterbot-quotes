@@ -37,12 +37,17 @@ def main():
 	
 	filename = open('quotes2.json','r',encoding='utf-8') 
 	tweetlist2 = filename.read() 
-	filename.close()	
+	filename.close()
+
+	filename = open('quotes3.json','r',encoding='utf-8') 
+	tweetlist3 = filename.read() 
+	filename.close()
 
 	tweetlist = demjson.decode(tweetlist)
 	tweetlist2 = demjson.decode(tweetlist2)
+	tweetlist3 = demjson.decode(tweetlist3)
 	
-	tweetlist = tweetlist+tweetlist2
+	tweetlist = tweetlist+tweetlist2+tweetlist3
 
 	with open('pic_urls.txt', 'r') as file:
 		url_list = file.readlines()
