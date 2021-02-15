@@ -8,6 +8,9 @@ import os
 #import schedule 
 from googletrans import Translator 
 
+import delete_tweets
+ 
+
 tmp_url_list = []
 
 def main():
@@ -23,6 +26,9 @@ def main():
 	user = api.me()
 	
 	gather_info.displayinfo(user)
+	
+	# delete older tweets first:
+	delete_tweets.delete_tweets_func(api)
 	
 	# What the bot will tweet
 	filename = open('quotes.js','r') 
@@ -156,7 +162,7 @@ if __name__ == "__main__":
 
 	while True:
 		main()
-		time.sleep(900)
+		time.sleep(1500)
 		#schedule.run_pending()
 #
 #
