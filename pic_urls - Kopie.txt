@@ -244,6 +244,3 @@ https://images.pexels.com/photos/695207/pexels-photo-695207.jpeg?auto=compress&a
 https://images.pexels.com/photos/4586258/pexels-photo-4586258.jpeg?auto=compress&amp;crop=entropy&amp;cs=tinysrgb&amp;dpr=2&amp;fit=crop&amp;h=50&amp;w=50
 https://images.pexels.com/photos/4164640/pexels-photo-4164640.jpeg?auto=compress&amp;crop=entropy&amp;cs=tinysrgb&amp;dpr=2&amp;fit=crop&amp;h=50&amp;w=50
 https://images.pexels.com/photos/1117493/pexels-photo-1117493.jpeg?auto=compress&amp;crop=entropy&amp;cs=tinysrgb&amp;dpr=2&amp;fit=crop&amp;h=50&amp;w=50
-https://images.pexels.com/photos/3822719/pexels-photo-3822719.jpeg
-https://images.pexels.com/photos/6198357/pexels-photo-6198357.jpeg
-https://images.pexels.com/photos/3772771/pexels-photo-3772771.jpeg

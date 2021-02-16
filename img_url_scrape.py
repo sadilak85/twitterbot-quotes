@@ -3,10 +3,11 @@ from bs4 import BeautifulSoup
 import re
 import cssutils
 import random
+import time
 
 while True:
   i = random.randint(10000,9999999)
-  url="https://images.pexels.com/photos/"+str(i)+"/pexels-photo-"+str(i)+".jpeg"
+  url="https://images.pexels.com/photos/"+str(i)+"/pexels-photo-"+str(i)+".jpeg?auto=compress&amp;crop=entropy&amp;cs=tinysrgb&amp;dpr=2&amp;fit=crop&amp;h=50&amp;w=50"
   request = requests.get(url)
   if request.status_code == 200:
     print('Web site exists')
@@ -17,7 +18,9 @@ while True:
       else: # not found, we are at the eof
         file.write(url+'\n') # append missing data
   else:
-    print('Web site does not exist') 
+    print('Web site does not exist')
+  
+  time.sleep(5)
     
 
 
