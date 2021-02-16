@@ -12,6 +12,7 @@ import delete_tweets
  
 
 tmp_url_list = []
+_tmptrendlist= []
 
 def main():
 	with open('API_keys.txt', 'r') as file :
@@ -102,8 +103,13 @@ def main():
 
 	print(trends_list)
 	i = random.randint(0,len(tweetlist)-1)
-	#j = random.randint(0,len(trends_list)-1)
+	
 	topTrend_text = str(trends_list[0])
+	while topTrend_text in _tmptrendlist:
+		j = random.randint(0,len(trends_list)-1)
+		topTrend_text = str(trends_list[j])
+	
+	_tmptrendlist.append(topTrend_text)	
 	
 	print(topTrend_text)
 	translator = Translator()
@@ -160,14 +166,29 @@ def main():
 		except StopIteration:
 			break
 			
+def check_positive_integer(num):
+  try:
+    val = int(num)
+    if val <= 0:  # if not a positive int print message and ask for input again
+      print("Sorry, input must be a positive integer and not zero, try again")
+      return False
+    return True
+  except ValueError:
+    print("That's not an integer!")
+    return False
 
 if __name__ == "__main__":
 	# run the function main() every 30 minutes  
-	#schedule.every(30).minutes.do(main)  
-
+	#schedule.every(30).minutes.do(main)
+	
+	while True:
+		_time = input("Give repeat time in sec:\n")
+		if check_positive_integer(_time):
+			break
+	
 	while True:
 		main()
-		time.sleep(1500)
+		time.sleep(int(_time))
 		#schedule.run_pending()
 #
 #

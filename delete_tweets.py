@@ -15,7 +15,7 @@ def delete_tweets_func(api):
 	verbose = False
 	delete_tweets = True
 	delete_favs = False
-	days_to_keep = 3
+	days_to_keep = 7
 
 	# set cutoff date, use utc to match twitter
 	cutoff_date = datetime.utcnow() - timedelta(days=days_to_keep)
