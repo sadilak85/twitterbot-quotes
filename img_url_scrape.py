@@ -6,7 +6,7 @@ import random
 import time
 
 while True:
-  i = random.randint(10000,9999999)
+  i = random.randint(100000,9999999)
   url="https://images.pexels.com/photos/"+str(i)+"/pexels-photo-"+str(i)+".jpeg?auto=compress&amp;crop=entropy&amp;cs=tinysrgb&amp;dpr=2&amp;fit=crop&amp;h=50&amp;w=50"
   request = requests.get(url)
   if request.status_code == 200:
