@@ -2,8 +2,27 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import cssutils
+import random
+
+while True:
+  i = random.randint(10000,9999999)
+  url="https://images.pexels.com/photos/"+str(i)+"/pexels-photo-"+str(i)+".jpeg"
+  request = requests.get(url)
+  if request.status_code == 200:
+    print('Web site exists')
+    with open("pic_urls.txt", "r+") as file:
+      for line in file:
+        if url in line:
+          break
+      else: # not found, we are at the eof
+        file.write(url+'\n') # append missing data
+  else:
+    print('Web site does not exist') 
+    
 
 
+
+'''
 lines_seen = set() # holds lines already seen
 outfile = open('outfilename', "w")
 for line in open('pic_urls.txt', "r"):
@@ -13,10 +32,6 @@ for line in open('pic_urls.txt', "r"):
 outfile.close()
 
 
-
-
-
-'''
 with open('pic_urls.txt', mode='r') as infile:
   htmlstr = infile.read()
   result = 'str'
