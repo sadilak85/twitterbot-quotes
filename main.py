@@ -65,7 +65,7 @@ def main():
 		url = url_list[i]
 		tmp_url_list.append(url)
 
-	lang_woeid = {'en': {'NewYork': '2459115', 'LosAngeles': '2442047', 'Toronto': '4118', 'Sydney': '1105779', 'London': '44418', 'Chicago': '2379574'},
+	lang_woeid = {#'en': {'NewYork': '2459115', 'LosAngeles': '2442047', 'Toronto': '4118', 'Sydney': '1105779', 'London': '44418', 'Chicago': '2379574'},
 	#'de': {'Germany': '23424829', 'Berlin': '638243', 'Munich': '676757', 'Hamburg': '656958'},
 	#'fr': {'France': '23424819', 'Paris': '615702'},
 	#'it': {'Italy': '23424853', 'Roma': '721943'},
