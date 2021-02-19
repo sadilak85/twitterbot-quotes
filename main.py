@@ -167,15 +167,15 @@ def main():
 			break
 			
 def check_positive_integer(num):
-  try:
-    val = int(num)
-    if val <= 0:  # if not a positive int print message and ask for input again
-      print("Sorry, input must be a positive integer and not zero, try again")
-      return False
-    return True
-  except ValueError:
-    print("That's not an integer!")
-    return False
+	try:
+		val = int(num)
+		if val <= 0:  # if not a positive int print message and ask for input again
+			print("Sorry, input must be a positive integer and not zero, try again")
+			return False
+		return True
+	except ValueError:
+		print("That's not an integer!")
+		return False
 
 if __name__ == "__main__":
 	# run the function main() every 30 minutes  
