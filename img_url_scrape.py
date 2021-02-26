@@ -5,6 +5,8 @@ import cssutils
 import random
 import time
 
+
+'''   PEXELS COM 
 while True:
   i = random.randint(100000,9999999)
   url="https://images.pexels.com/photos/"+str(i)+"/pexels-photo-"+str(i)+".jpeg?auto=compress&amp;crop=entropy&amp;cs=tinysrgb&amp;dpr=2&amp;fit=crop&amp;h=50&amp;w=50"
@@ -21,7 +23,7 @@ while True:
     print('Web site does not exist')
   
   time.sleep(5)
-    
+   ''' 
 
 
 
@@ -55,13 +57,23 @@ with open('out_.txt', mode='w') as outfile:
     a = i[1:]
     b = a[:-1]
     outfile.write(b+'\n')
+'''
 
+#
 
-
-htmlContent = requests.get('https://www.pexels.com/search/girl')
+htmlContent = requests.get('https://wunderstock.com/arts/dance')
 soup = BeautifulSoup(htmlContent.text, 'html.parser')
-print(soup.find_all("div", class_="image-tag__img"))
+
+images = soup.findAll('img')
+
+with open('filepath', mode='w') as outfile:
+  for image in images:
+    if 'https' in str(image):
+      outfile.write(image['src']+'\n')
+
 quit()
+
+
 
 with open('filepath', mode='w') as outfile:
   div_style = soup.findAll('div', attrs={'class': 'image-tag__img'})
@@ -72,4 +84,3 @@ with open('filepath', mode='w') as outfile:
   
   outfile.write(url)
 
-'''
