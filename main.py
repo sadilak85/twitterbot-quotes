@@ -5,8 +5,9 @@ import gather_info
 import random
 import requests
 import os
+import re
 #import schedule 
-from googletrans import Translator 
+from google_trans_new import google_translator 
 
 import delete_tweets
  
@@ -33,7 +34,7 @@ def main():
 	
 	# What the bot will tweet
 	filename = open('quotes.js','r') 
-	tweetlist = filename.read() 
+	tweetlist1 = filename.read() 
 	filename.close()
 	
 	filename = open('quotes2.json','r',encoding='utf-8') 
@@ -44,11 +45,10 @@ def main():
 	tweetlist3 = filename.read() 
 	filename.close()
 
-	tweetlist = demjson.decode(tweetlist)
-	tweetlist2 = demjson.decode(tweetlist2)
-	tweetlist3 = demjson.decode(tweetlist3)
-	
-	tweetlist = tweetlist+tweetlist2+tweetlist3
+	tweetlist1 = demjson.decode(tweetlist1) #js 
+	tweetlist2 = demjson.decode(tweetlist2) #json
+	tweetlist3 = demjson.decode(tweetlist3) #json
+	tweetlist = tweetlist1 + tweetlist2 + tweetlist3
 
 	with open('pic_urls.txt', 'r') as file:
 		url_list = file.readlines()
@@ -102,7 +102,7 @@ def main():
 		trends_list = trend_topic ()
 
 	print(trends_list)
-	i = random.randint(0,len(tweetlist)-1)
+	
 	
 	topTrend_text = str(trends_list[0])
 	while topTrend_text in _tmptrendlist:
@@ -112,7 +112,32 @@ def main():
 	_tmptrendlist.append(topTrend_text)	
 	
 	print(topTrend_text)
-	translator = Translator()
+	#translator = Translator()
+	translator = google_translator() 
+
+
+	# for i in range(len(tweetlist)):
+	# 	translated_ = translator.translate(str(tweetlist[i]["text"]), lang_tgt='tr')
+	# 	tweetlist[i]['text'] = translated_
+
+	#list_topTrend_words = re.findall('([A-Z][a-z]+)', topTrend_text[1:], re.UNICODE)
+	list_topTrend_words=[]
+	keywords =[]
+	pos = [i for i,e in enumerate(topTrend_text[1:]+'A') if e.isupper()]
+	for j in range(len(pos)-1):
+		_tmp = topTrend_text[1:][pos[j]:pos[j+1]]
+		if len(_tmp)>1:
+			list_topTrend_words.append(_tmp)
+
+	for trendWord in list_topTrend_words:
+		keyword = translator.translate(trendWord, lang_tgt='en').strip()
+		print (keyword)
+		keywords = list(filter(lambda twittext: keyword in twittext['text'],  tweetlist  ))
+
+	if keywords != []:
+		tweetlist = keywords
+
+	tweetlistitem = random.randint(0,len(tweetlist)-1) # RANDOM ITEM IN LIST
 	try: 
 		#api.update_status(tweetlist[i]["text"]+' -'+tweetlist[i]["author"])
 		filename = 'temp.jpg'
@@ -122,13 +147,12 @@ def main():
 				for chunk in request:
 					image.write(chunk)
 			try:
-				translated_text = translator.translate(str(tweetlist[i]["text"]), src=src_lang, dest=dest_lang)
-				print(translated_text.origin)
-				print(translated_text.text)
-				tweettext = translated_text.text+' -'+str(tweetlist[i]["author"])+' '+topTrend_text
+				translated_text = translator.translate(str(tweetlist[tweetlistitem]["text"]), lang_tgt='tr')
+				print(translated_text)
+				tweettext = translated_text+' -'+str(tweetlist[tweetlistitem]["author"])+' '+topTrend_text
 			except:
-				print(tweetlist[i]["text"])
-				tweettext = str(tweetlist[i]["text"])+' -'+str(tweetlist[i]["author"])+' '+topTrend_text
+				print(tweetlist[tweetlistitem]["text"])
+				tweettext = str(tweetlist[tweetlistitem]["text"])+' -'+str(tweetlist[tweetlistitem]["author"])+' '+topTrend_text
 	
 			api.update_with_media(filename, status=tweettext)
 			os.remove(filename)
