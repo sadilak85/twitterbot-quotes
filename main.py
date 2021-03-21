@@ -130,11 +130,13 @@ def main():
 			list_topTrend_words.append(_tmp)
 
 	for trendWord in list_topTrend_words:
+		print (trendWord)
 		keyword = translator.translate(trendWord, lang_tgt='en').strip()
 		print (keyword)
 		keywords = list(filter(lambda twittext: keyword in twittext['text'],  tweetlist  ))
 
 	if keywords != []:
+		print(keywords)
 		tweetlist = keywords
 
 	tweetlistitem = random.randint(0,len(tweetlist)-1) # RANDOM ITEM IN LIST
